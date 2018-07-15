@@ -4,4 +4,9 @@ public class Franc extends Money {
         this.amount=amount;
         this.currency = "CHF";
     }
+
+    @Override
+    Franc times(int muliplier){
+        return new Franc(amount*muliplier);
+    }
 }

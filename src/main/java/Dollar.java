@@ -5,6 +5,7 @@ public class Dollar extends Money {
         this.currency = "USD";
     }
 
+    @Override
     Dollar times(int muliplier){
         return new Dollar(amount*muliplier);
     }
