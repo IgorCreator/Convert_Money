@@ -30,5 +30,7 @@ class Money {
         return new Franc(amount, "CHF");
     }
 
-
+    public Money plus(Money addend) {
+     return new Money(amount + addend.amount, currency);
+    }
 }
