@@ -1,3 +1,5 @@
+package objects;
+
 public class Franc extends Money {
 
     Franc(int amount, String currency){

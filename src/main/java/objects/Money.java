@@ -1,18 +1,21 @@
-class Money {
+package objects;
+import operations.ActionExpression;
+
+public class Money implements ActionExpression {
 
     int amount;
     protected String currency;
 
-    Money times(int multiplier) {
+    public Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
-    Money(int amount, String currency){
+    public Money(int amount, String currency){
         this.amount = amount;
         this.currency = currency;
     }
 
-    String getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
@@ -22,15 +25,15 @@ class Money {
         return amount == money.amount && getCurrency().equals(money.getCurrency());
     }
 
-    static Money dollar(int amount) {
+    public static Money dollar(int amount) {
         return new Dollar(amount, "USD");
     }
 
-    static Money franc(int amount) {
+    public static Money franc(int amount) {
         return new Franc(amount, "CHF");
     }
 
-    public Money plus(Money addend) {
+    public ActionExpression plus(Money addend) {
      return new Money(amount + addend.amount, currency);
     }
 }
