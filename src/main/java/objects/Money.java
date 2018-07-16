@@ -1,16 +1,18 @@
 package objects;
+
 import operations.ActionExpression;
+import operations.Sum;
 
 public class Money implements ActionExpression {
 
-    int amount;
+    public int amount;
     protected String currency;
 
     public Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
-    public Money(int amount, String currency){
+    public Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
@@ -34,6 +36,10 @@ public class Money implements ActionExpression {
     }
 
     public ActionExpression plus(Money addend) {
-     return new Money(amount + addend.amount, currency);
+     return new Sum(this, addend);
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 }
