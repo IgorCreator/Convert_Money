@@ -89,4 +89,21 @@ public class MoneyTest {
         Money res = bank.transform((fiveBucks).plus(tenFrancs), "USD");
         assertEquals(Money.dollar(10), res);
     }
+
+    @Test
+    public void testSumPlusMoney(){
+        ActionExpression fiveBucks = Money.dollar(5);
+        ActionExpression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        ActionExpression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        Money res = bank.transform(sum, "USD");
+        assertEquals(Money.dollar(20), res);
+    }
+
+    @Test
+    public void testPlusSameCurrency(){
+        ActionExpression sum = Money.dollar(2).plus(Money.dollar(2));
+        assertTrue(sum instanceof Money);
+    }
 }

@@ -18,6 +18,10 @@ public class Sum implements ActionExpression{
     }
 
     public ActionExpression plus(ActionExpression addend) {
-        return null;
+        return new Sum(this, addend);
+    }
+
+    public ActionExpression times(int multip) {
+        return new Sum(augend.times(multip), addend.times(multip));
     }
 }
