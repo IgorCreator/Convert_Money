@@ -1,3 +1,4 @@
+import objects.Franc;
 import objects.Money;
 import operations.ActionExpression;
 import operations.Bank;
@@ -77,5 +78,15 @@ public class MoneyTest {
         bank.addRate("CHF", "USD", 2);
         Money res = bank.transform(Money.franc(2), "USD");
         assertEquals(Money.dollar(1), res);
+    }
+
+    @Test
+    public void testMixedAddition(){
+        ActionExpression fiveBucks = Money.dollar(5);
+        ActionExpression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money res = bank.transform((fiveBucks).plus(tenFrancs), "USD");
+        assertEquals(Money.dollar(10), res);
     }
 }

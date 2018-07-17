@@ -4,16 +4,20 @@ import objects.Money;
 
 public class Sum implements ActionExpression{
 
-    public Money augend;
-    public Money addend;
+    public ActionExpression augend;
+    public ActionExpression addend;
 
-    public Sum(Money augend, Money addend) {
+    public Sum(ActionExpression augend, ActionExpression addend) {
         this.augend = augend;
         this.addend = addend;
     }
 
     public Money reduce(Bank bank, String to) {
-        int amount = augend.amount + addend.amount;
+        int amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
         return new Money(amount,to);
+    }
+
+    public ActionExpression plus(ActionExpression addend) {
+        return null;
     }
 }

@@ -9,7 +9,7 @@ public class Money implements ActionExpression {
     public int amount;
     protected String currency;
 
-    public Money times(int multiplier) {
+    public ActionExpression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
@@ -36,7 +36,7 @@ public class Money implements ActionExpression {
         return new Franc(amount, "CHF");
     }
 
-    public ActionExpression plus(Money addend) {
+    public ActionExpression plus(ActionExpression addend) {
      return new Sum(this, addend);
     }
 
